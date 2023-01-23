@@ -8,6 +8,12 @@ namespace domain.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public Specialization()
+        {
+            Id = 0;
+            Name = "NULL";
+        }
+
         public Specialization(int id, string name)
         {
             Id = id;
