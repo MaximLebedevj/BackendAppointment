@@ -7,5 +7,8 @@ namespace domain.Repository
         bool IsUserExists(string login);
         bool CreateUser(User user);
         User GetUserByLogin(string login);
+        public User? GetUserById(int id);
+        public bool IsExists(int id);
+        public bool IsExists(string name);
     }
 }

@@ -6,10 +6,18 @@ namespace domain.UseCases
     public class DoctorService
     {
         private readonly IDoctorRepository _db;
+        private readonly IAppointmentRepository _appdb;
+        private IDoctorRepository @object;
 
-        public DoctorService(IDoctorRepository db)
+        public DoctorService(IDoctorRepository db, IAppointmentRepository appdb)
         {
             _db = db;
+            _appdb = appdb;
+        }
+
+        public DoctorService(IDoctorRepository @object)
+        {
+            this.@object = @object;
         }
 
         public Result<Doctor> CreateDoctor(Doctor doctor)
@@ -40,6 +48,23 @@ namespace domain.UseCases
             return doctor != null ? Result.Ok(doctor) : Result.Fail<Doctor>("Doctor not found");
         }
 
+        public Result<Doctor> DeleteDoctor(int id)
+        {
+            if (_appdb.GetFreeTime(id).Any())
+                return Result.Fail<Doctor>("Unable to delete doctor: Doctor has appointments");
+
+            var result = FindDoctor(id);
+            if (result.IsFailure)
+                return Result.Fail<Doctor>(result.Error);
+
+            if (_db.Delete(id))
+            {
+                _db.Save();
+                return result;
+            }
+            return Result.Fail<Doctor>("Unable to delete doctor");
+        }
+
         public Result<Doctor> DeleteDoctor (int id, IEnumerable<Appointment> appointments) 
         {
             if (appointments.Any())
@@ -50,6 +75,27 @@ namespace domain.UseCases
                 return Result.Fail<Doctor>("Doctor not found");
 
             return _db.DeleteDoctor(id) ? doctor : Result.Fail<Doctor>("User has not been deleted");
+        }
+
+        public Result<Doctor> FindDoctor(int id)
+        {
+            if (id < 0)
+                return Result.Fail<Doctor>("Invalid Id");
+            var doctor = _db.FindDoctor(id);
+            if (doctor != null)
+                return Result.Ok(doctor);
+            return Result.Fail<Doctor>("Doctor not found");
+        }
+
+        public Result<IEnumerable<Doctor>> FindDoctor(Specialization spec)
+        {
+            var result = spec.IsValid();
+            if (result.IsFailure)
+                return Result.Fail<IEnumerable<Doctor>>("Invalid Spec");
+            var doctor = _db.FindDoctor(spec);
+            if (doctor != null)
+                return Result.Ok(doctor);
+            return Result.Fail<IEnumerable<Doctor>>("Doctor not found");
         }
 
         public Result<IEnumerable<Doctor>> GetAllDoctors()

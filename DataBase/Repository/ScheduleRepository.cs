@@ -66,17 +66,12 @@ public class ScheduleRepository : IScheduleRepository
         throw new NotImplementedException();
     }
 
-    void IRepository<Schedule>.Create(Schedule item)
-    {
-        throw new NotImplementedException();
-    }
-
-    void IRepository<Schedule>.Delete(int id)
-    {
-        throw new NotImplementedException();
-    }
-
     Schedule IRepository<Schedule>.Get(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    Schedule? IScheduleRepository.GetSchedule(int id)
     {
         throw new NotImplementedException();
     }
@@ -92,6 +87,11 @@ public class ScheduleRepository : IScheduleRepository
     }
 
     bool IScheduleRepository.UpdateSchedule(Schedule schedule, Doctor doctor)
+    {
+        throw new NotImplementedException();
+    }
+
+    bool IScheduleRepository.UpdateSchedule(Schedule schedule)
     {
         throw new NotImplementedException();
     }

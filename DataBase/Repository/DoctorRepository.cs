@@ -67,17 +67,7 @@ public class DoctorRepository : IDoctorRepository
         return true;
     }
 
-    void IRepository<Doctor>.Create(Doctor item)
-    {
-        throw new NotImplementedException();
-    }
-
     bool IDoctorRepository.CreateDoctor(Doctor doctor)
-    {
-        throw new NotImplementedException();
-    }
-
-    void IRepository<Doctor>.Delete(int id)
     {
         throw new NotImplementedException();
     }

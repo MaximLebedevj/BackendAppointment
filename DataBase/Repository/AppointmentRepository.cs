@@ -68,16 +68,6 @@ public class AppointmentRepository : IAppointmentRepository
         throw new NotImplementedException();
     }
 
-    void IRepository<Appointment>.Create(Appointment item)
-    {
-        throw new NotImplementedException();
-    }
-
-    void IRepository<Appointment>.Delete(int id)
-    {
-        throw new NotImplementedException();
-    }
-
     Appointment IRepository<Appointment>.Get(int id)
     {
         throw new NotImplementedException();

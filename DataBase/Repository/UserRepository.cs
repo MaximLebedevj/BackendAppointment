@@ -63,17 +63,8 @@ public class UserRepository : IUserRepository
     {
         _context.SaveChanges();
     }
-    void IRepository<User>.Create(User item)
-    {
-        throw new NotImplementedException();
-    }
 
     bool IUserRepository.CreateUser(User user)
-    {
-        throw new NotImplementedException();
-    }
-
-    void IRepository<User>.Delete(int id)
     {
         throw new NotImplementedException();
     }
@@ -94,6 +85,21 @@ public class UserRepository : IUserRepository
     }
 
     void IRepository<User>.Update(User item)
+    {
+        throw new NotImplementedException();
+    }
+
+    User? IUserRepository.GetUserById(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    bool IUserRepository.IsExists(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    bool IUserRepository.IsExists(string name)
     {
         throw new NotImplementedException();
     }

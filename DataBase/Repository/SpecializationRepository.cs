@@ -66,18 +66,7 @@ public class SpecializationRepository : IRepository<Specialization>
     {
         throw new NotImplementedException();
     }
-
-    void IRepository<Specialization>.Create(Specialization item)
-    {
-        throw new NotImplementedException();
-    }
-
     void IRepository<Specialization>.Update(Specialization item)
-    {
-        throw new NotImplementedException();
-    }
-
-    void IRepository<Specialization>.Delete(int id)
     {
         throw new NotImplementedException();
     }
