@@ -6,9 +6,9 @@ namespace domain.Repository
     {
         IEnumerable<T> GetAll();  // get all objects
         T Get(int id);  // get one object by id
-        void Create(T item);  // create the object
+        bool Create(T item);  // create the object
         void Update(T item);  // update the object 
-        void Delete(int id);  // delete the object
+        bool Delete(int id);  // delete the object
         void Save();  // Save changes
     }
 }

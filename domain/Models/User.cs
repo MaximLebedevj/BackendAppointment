@@ -11,7 +11,7 @@ namespace domain.Models
         public string PhoneNumber { get; set; }
         public string FullName { get; set; }
         public Role Role { get; set; }
-
+        public User() : this("NULL", "NULL", 0, "NULL", "NULL", Role.Patient) { }
         public User(string login, string password, int id, string phoneNumber, string fullName, Role role)
         {
             Login = login;

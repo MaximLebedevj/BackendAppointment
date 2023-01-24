@@ -42,5 +42,35 @@ namespace domain.UseCases
             var user = _db.GetUserByLogin(login);
             return user is null ? Result.Fail<User>("User not found") : Result.Ok(user);
         }
+
+        public Result<User> GetUserById(int id)
+        {
+            if (id < 0)
+                return Result.Fail<User>("Invalid Id");
+            var user = _db.GetUserById(id);
+            if (user != null)
+                return Result.Ok(user);
+            return Result.Fail<User>("User Not Found");
+        }
+
+        public Result<bool> IsExists(int id)
+        {
+            if (id < 0)
+                return Result.Fail<bool>("Invalid Id");
+
+            return Result.Ok(_db.IsExists(id));
+        }
+
+        public Result<bool> IsExists(string name)
+        {
+            if (name == String.Empty)
+                return Result.Fail<bool>("Please fill your name");
+
+            return Result.Ok(_db.IsExists(name));
+        }
+        public Result<IEnumerable<User>> GetAll()
+        {
+            return Result.Ok(_db.GetAll());
+        }
     }
 }

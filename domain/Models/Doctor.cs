@@ -9,6 +9,13 @@ namespace domain.Models
         public string FullName { get; set; }
         public Specialization Specialization { get; set; }
 
+        public Doctor()
+        {
+            Id = 0;
+            FullName = "NULL";
+            Specialization = new Specialization();
+        }
+
         public Doctor(int id, string fullName, Specialization specialization)
         {
             Id = id;
